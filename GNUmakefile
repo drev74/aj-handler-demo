@@ -1,5 +1,5 @@
 AJIMG ?= drev74/aj-handler:test
-CTX 	?= AJ_API
+CTX 	?= AJC
 
 show:
 
@@ -13,6 +13,12 @@ context:
 	XDG_CONFIG_HOME=`pwd` nats context add ${CTX} --server nats://localhost:4222 && chmod 777 -R nats 
 
 run:
-	docker run -it -v ${PWD}/nats:/handler/config/nats -e AJ_NATS_CONTEXT=${CTX} -p 8087:8080 --rm ${AJIMG}
+	docker run -it \
+	-v /home/bku/.config/nats:/handler/config/nats \
+	 -e AJ_NATS_CONTEXT=${CTX} \
+	 -e AJ_WORK_QUEUE=SDK \
+	 -e XDG_CONFIG_HOME=/handler/config \
+	 -p 8087:8080 \
+	 --rm ${AJIMG}
 
 .PHONY: build release context run
