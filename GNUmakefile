@@ -1,4 +1,5 @@
 AJIMG ?= drev74/aj-handler:test
+HOST  ?= '192.168.1.93:34377'
 CTX 	?= AJC
 
 show:
@@ -9,16 +10,10 @@ build:
 release:
 	cd docker && docker build . -t ${AJIMG}
 
-context:
-	XDG_CONFIG_HOME=`pwd` nats context add ${CTX} --server nats://localhost:4222 && chmod 777 -R nats 
-
 run:
 	docker run -it \
-	-v /home/bku/.config/nats:/handler/config/nats \
-	 -e AJ_NATS_CONTEXT=${CTX} \
-	 -e AJ_WORK_QUEUE=SDK \
-	 -e XDG_CONFIG_HOME=/handler/config \
-	 -p 8087:8080 \
-	 --rm ${AJIMG}
+		-v ${PWD}/nats:/handler/config/nats \
+	 	-p 8087:8080 \
+	 	--rm ${AJIMG}
 
-.PHONY: build release context run
+.PHONY: build release run

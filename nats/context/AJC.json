@@ -1,0 +1,17 @@
+{
+  "description": "Local user access for NATS Development instance",
+  "url": "nats://192.168.1.93:34377",
+  "token": "",
+  "user": "local",
+  "password": "36mgO3W6PNIZz0ZD2qIdQ9SZWFkFuFah",
+  "creds": "",
+  "nkey": "",
+  "cert": "",
+  "key": "",
+  "ca": "",
+  "nsc": "",
+  "jetstream_domain": "",
+  "jetstream_api_prefix": "",
+  "jetstream_event_prefix": "",
+  "inbox_prefix": ""
+}
