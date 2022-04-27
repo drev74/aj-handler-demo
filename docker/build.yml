@@ -1,0 +1,38 @@
+---
+# The NATS Context to connect with.
+#
+# Same as NatsContext() client option
+nats: AJC
+
+# The Work Queue to consume.
+#
+# Same as BindWorkQueue() client option
+queue: SDK
+
+# The package name to generate
+name: github.com/drev74/aj-handler-demo
+
+# The version of github.com/choria-io/asyncjobs to use,
+# something go get would accept. Defeaults to the same
+# as the CLI version
+asyncjobs: main
+
+# Use the RetryLinearTenMinutes retry policy,
+#
+# Equivelant to client RetryBackoffPolicyName() option
+retry: 1m
+
+# Discard tasks that reach complete state.
+#
+# Same as DiscardTaskStates() client option
+# discard:
+#   - completed
+
+tasks:
+  - type: sdk::ec2
+    package: github.com/ripienaar/asyncjobs-logging-handler
+    version: main
+  - type: audit:log
+    remote: true
+  # - type: webhook:call
+  #   command: webhook/call.sh

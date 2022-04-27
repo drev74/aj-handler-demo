@@ -1,0 +1,5 @@
+.vscode
+nats
+
+docker/main.go
+docker/Dockerfile
